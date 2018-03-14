@@ -1,1 +1,35 @@
-<%= @links %>
+<!DOCTYPE html>
+<html>
+  <head>
+    <meta charset="utf-8">
+    <title></title>
+  </head>
+  <style >
+    .topstrip {
+      background-color: rgb(22,120,200);
+    }
+    .topform{
+      padding: 20px;
+    }
+  </style>
+  <body>
+    <div class = "topstrip">
+      <form action="/add" method="post" class="topform">
+        <input type="text" name="url" >
+        <input type="submit" value="Add">
+      </form>
+    </div>
+
+    <div class="">
+      <h1>Saved Links</h1>
+      <ul>
+        <% @links.each {|link| %>
+          <li> <%=link%> </li>
+        <% } %>
+      </ul>
+    </div>
+
+
+
+  </body>
+</html>

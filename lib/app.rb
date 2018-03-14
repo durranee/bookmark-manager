@@ -10,8 +10,10 @@ class Bookmarks < Sinatra::Base
     erb :index
   end
 
-  get '/add-a-new-link' do
-    erb :add_a_new_link
+  post '/add' do
+    Link.add(params[:url])
+    redirect('/')
+
   end
 
   run! if app_file == $0
