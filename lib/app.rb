@@ -1,5 +1,6 @@
 require 'sinatra/base'
 require_relative 'link.rb'
+require './database_connection_setup'
 
 
 
