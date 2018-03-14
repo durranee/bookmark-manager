@@ -5,7 +5,7 @@ require 'capybara/rspec'
 require 'pg'
 
 Capybara.app = Bookmarks
-ENV['ENVIORNMENT'] = 'test'
+ENV['ENVIRONMENT'] = 'test'
 
 RSpec.configure do |config|
   config.before(:each) do
