@@ -1,17 +1,18 @@
 require 'sinatra/base'
-require 'link.rb'
+require_relative 'link.rb'
 
 
 
 class Bookmarks < Sinatra::Base
 
   get '/' do
-    link = Link.new
-    @list = link.all
+    @links = Link.all
     erb :index
   end
 
-
+  get '/add-a-new-link' do
+    erb :add_a_new_link
+  end
 
   run! if app_file == $0
 end

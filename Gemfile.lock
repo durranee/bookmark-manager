@@ -67,6 +67,7 @@ PLATFORMS
 DEPENDENCIES
   capybara
   pg
+  rack
   rspec
   selenium-webdriver
   shotgun
