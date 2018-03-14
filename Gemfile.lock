@@ -28,6 +28,7 @@ GEM
       rack
     rack-test (0.8.3)
       rack (>= 1.0, < 3)
+    rake (12.3.0)
     rspec (3.7.0)
       rspec-core (~> 3.7.0)
       rspec-expectations (~> 3.7.0)
@@ -68,6 +69,7 @@ DEPENDENCIES
   capybara
   pg
   rack
+  rake
   rspec
   selenium-webdriver
   shotgun
