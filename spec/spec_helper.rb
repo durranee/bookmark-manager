@@ -1,15 +1,19 @@
-#SimpleCov.start
+ENV['ENVIRONMENT'] = 'test'
+# SimpleCov.start
 require 'app.rb'
 require 'capybara'
 require 'capybara/rspec'
 require 'pg'
+require 'rake'
 
 Capybara.app = Bookmarks
-ENV['ENVIRONMENT'] = 'test'
+# Load the Rakefile
+Rake.application.load_rakefile
 
 RSpec.configure do |config|
   config.before(:each) do
-    require_relative './test_database_setup'
+    # require_relative './test_database_setup'
+    Rake::Task['test_database_population'].invoke
   end
 end
 

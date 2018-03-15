@@ -1,0 +1,29 @@
+require 'pg'
+
+task default: %w[new_db test_database_population]
+
+task :new_db do
+  p 'Creating Databases...........'
+  # creating new databases and tables if don't already exist
+  ['bookmark_manager', 'bookmark_manager_test'].each do |db|
+    connection = PG.connect
+    begin
+      connection.exec("CREATE DATABASE #{db};")
+      connection = PG.connect(dbname: db)
+      connection.exec("CREATE TABLE links(id SERIAL PRIMARY KEY, url VARCHAR(60));")
+    rescue PG::Error => e
+      puts e.message
+    end
+  end
+end
+
+task :test_database_population do
+  p "clearing up and populating test database..."
+  connection = PG.connect(dbname: 'bookmark_manager_test')
+  connection.exec("Truncate links;")
+  connection.exec("INSERT INTO links VALUES(1, 'http://www.makersacademy.com');")
+  connection.exec("INSERT INTO links VALUES(2, 'http://www.google.com');")
+  connection.exec("INSERT INTO links VALUES(3, 'http://www.facebook.com');")
+  connection.exec("INSERT INTO links VALUES(4, 'http://www.testing_this.com');")
+  p "links added to test database."
+end
