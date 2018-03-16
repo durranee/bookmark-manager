@@ -6,21 +6,18 @@ require 'sinatra/flash'
 class Bookmarks < Sinatra::Base
   enable :sessions
   register Sinatra::Flash
+
   get '/' do
     @links = Link.all
     erb :index
   end
 
   post '/add' do
-    if Link.good_link?(params[:url])
-      Link.add(params[:url])
-      redirect('/') # if flash and divert back then disable this
-    else
-      flash[:notice] = 'Bad url, please enter a valid URL.<br>
-      Please wait to divert back to home'
-      # sleep(3)
-    end
-    # redirect('/')
+
+    Link.good_link?(params[:url]) ? Link.add(params[:url]) :
+    flash[:error] = 'Sorry, the link you have added is not valid'
+    redirect('/')
+
   end
 
   run! if app_file == $0

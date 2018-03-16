@@ -10,7 +10,9 @@ task :new_db do
     begin
       connection.exec("CREATE DATABASE #{db};")
       connection = PG.connect(dbname: db)
+      puts "Database #{db} created."
       connection.exec("CREATE TABLE links(id SERIAL PRIMARY KEY, url VARCHAR(60));")
+      puts "Tables on #{db} created."
     rescue PG::Error => e
       puts e.message
     end

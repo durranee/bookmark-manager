@@ -1,7 +1,6 @@
 # require 'uri'
 require 'pg'
 require './lib/databaseconnection'
-require 'uri'
 
 class Link
 
@@ -15,7 +14,7 @@ class Link
   end
 
   def self.good_link?(link)
-    (link =~ /\A#{URI::regexp(['http', 'https'])}\z/) ? true :
-    false
+    link =~ /\A#{URI::regexp(['http', 'https'])}\z/
+     # ? true :  false
   end
 end
